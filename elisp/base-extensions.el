@@ -76,6 +76,7 @@
   ("C-x g s" . magit-status)
   ("C-x g x" . magit-checkout)
   ("C-x g c" . magit-commit)
+  ("C-x g f" . magit-fetch)
   ("C-x g p" . magit-push)
   ("C-x g u" . magit-pull)
   ("C-x g e" . magit-ediff-resolve)

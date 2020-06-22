@@ -5,7 +5,6 @@
   (setq evil-want-keybinding nil)
   :config
   (evil-define-key 'normal global-map "," 'evil-execute-in-god-state)
-  (evil-define-key 'god global-map "C-x" 'evil-god-state-bail)
   (evil-mode 1))
 
 (use-package evil-god-state)
