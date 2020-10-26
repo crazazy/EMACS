@@ -17,3 +17,4 @@
   (evil-collection-init))
 
 (provide 'base-evil)
+

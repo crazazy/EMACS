@@ -6,14 +6,14 @@ let
   bigConfigStr = concatStringsSep "\n" (map (n: readFile (./elisp + ("/" + n))) srcFiles);
   bigConfig = toFile "emacsrc" bigConfigStr;
   # packages which aren't available in the nix-repositories, mostly because they're built-in
-  blackList = [ "ediff" "linum" "recentf" "windmove" "company-tern" "css-mode" ];
+  blackList = [ "ediff" "recentf" "linum" "windmove" "company-tern" "css-mode" ];
   customConfig = runCommand "config.el" {} ''
     mkdir -p $out/share/emacs/site-lisp
     cp ${bigConfig} $out/share/emacs/site-lisp/default.el
   '';
   deps = runCommand "deps.nix" {} (''
     cat > $out << EOF
-    config: epkgs: with epkgs; [
+    config: epkgs: with (epkgs // epkgs.melpaPackages); [
     config
     use-package
     EOF

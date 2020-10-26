@@ -26,3 +26,4 @@
 
 (ad-activate 'linum-update)
 (provide 'base-linum)
+

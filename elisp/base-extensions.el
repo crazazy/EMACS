@@ -1,4 +1,3 @@
-
 (use-package avy
   :bind
   ("C-c SPC" . avy-goto-char))
@@ -170,3 +169,4 @@
   (yas-global-mode 1))
 
 (provide 'base-extensions)
+
