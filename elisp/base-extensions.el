@@ -67,6 +67,7 @@
   (global-linum-mode nil))
 
 (use-package magit
+  :defer t
   :config
 
   (setq magit-completing-read-function 'ivy-completing-read)
@@ -138,11 +139,8 @@
 
 (use-package restart-emacs
   :bind
-  ("C-c C-r" . restart-emacs))
-
+  ("ESC C-r" . restart-emacs)) ;; This is like one of the few keybinds left
 (use-package smartparens)
-
-(use-package smex)
 
 (use-package undo-tree
   :config

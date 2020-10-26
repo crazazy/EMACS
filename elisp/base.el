@@ -4,10 +4,11 @@
              '("elpy" . "http://jorgenschaefer.github.io/packages/"))
 
 (when (not package-archive-contents)
-  (package-refresh-contents))
+(package-refresh-contents))
 
 (unless (package-installed-p 'use-package)
-  (package-install 'use-package))
+(package-install 'use-package))
+
 (require 'use-package)
 
 (defconst private-dir  (expand-file-name "private" user-emacs-directory))

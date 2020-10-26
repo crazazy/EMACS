@@ -2,5 +2,8 @@ elpa/
 private/
 transient/
 url/
-smex-items
 .custom.el
+# orgmode caches
+.org-id-locations
+# nix-related
+result
