@@ -1,3 +1,14 @@
+(package-initialize)
+(add-to-list 'package-archives
+	     '("melpa" . "https://melpa.org/packages/")
+             '("elpy" . "http://jorgenschaefer.github.io/packages/"))
+
+(when (not package-archive-contents)
+(package-refresh-contents))
+
+(unless (package-installed-p 'use-package)
+(package-install 'use-package))
+
 (require 'use-package)
 
 (defconst private-dir  (expand-file-name "private" user-emacs-directory))
@@ -77,6 +88,6 @@
 ;; Delete trailing whitespace before save
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
 
-(provide 'base)
+(provide '_base)
 ;;; base ends here
 

@@ -57,6 +57,7 @@
 
 
 (use-package hlinum
+  :after linum
   :config
   (hlinum-activate))
 
