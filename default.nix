@@ -5,8 +5,19 @@ let
   srcFiles = attrNames (readDir ./elisp);
   bigConfigStr = concatStringsSep "\n" (map (n: readFile (./elisp + ("/" + n))) srcFiles);
   bigConfig = toFile "emacsrc" bigConfigStr;
-  # packages which aren't available in the nix-repositories, mostly because they're built-in
-  blackList = [ "ediff" "recentf" "linum" "windmove" "company-tern" "css-mode" ];
+  # packages which aren't available in the nix-repositories, mostly because they're built-in, or built into another package
+  blackList = [
+    "cc-mode"
+    "company-tern"
+    "css-mode"
+    "ede"
+    "ediff"
+    "flycheck-mix"
+    "linum"
+    "recentf"
+    "semantic"
+    "windmove"
+  ];
   customConfig = runCommand "config.el" {} ''
     mkdir -p $out/share/emacs/site-lisp
     cp ${bigConfig} $out/share/emacs/site-lisp/default.el
