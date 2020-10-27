@@ -12,6 +12,9 @@
 (when (not package-archive-contents)
 (package-refresh-contents))
 
+(unless (package-installed-p 'use-package)
+  (package-install 'use-package))
+
 (add-to-list 'load-path (concat user-emacs-directory "elisp"))
 
 (require '_base)

@@ -1,8 +1,6 @@
 (unless (boundp 'package-installed-p)
-  (package-initialize))
-
-(unless (package-installed-p 'use-package)
-  (package-install 'use-package))
+  (package-initialize t)
+  (setq package-archives nil))
 
 (require 'use-package)
 
@@ -78,7 +76,8 @@
 
 ;; Need to load custom file to avoid being overwritten
 ;; more at https://www.gnu.org/software/emacs/manual/html_node/emacs/Saving-Customizations.html
-(load custom-file)
+(when (file-exists-p custom-file)
+  (load custom-file))
 
 ;; Delete trailing whitespace before save
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
