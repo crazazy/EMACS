@@ -1,13 +1,8 @@
-(package-initialize)
-(add-to-list 'package-archives
-	     '("melpa" . "https://melpa.org/packages/")
-             '("elpy" . "http://jorgenschaefer.github.io/packages/"))
-
-(when (not package-archive-contents)
-(package-refresh-contents))
+(unless (boundp 'package-installed-p)
+  (package-initialize))
 
 (unless (package-installed-p 'use-package)
-(package-install 'use-package))
+  (package-install 'use-package))
 
 (require 'use-package)
 
@@ -90,4 +85,3 @@
 
 (provide '_base)
 ;;; base ends here
-

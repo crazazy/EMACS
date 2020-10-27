@@ -1,0 +1,12 @@
+#+title: Crazazy's EMACS distribution
+#+author: Crazazy
+
+This Emacs distribution is made in such a way that it can also be installed via nix
+
+unlike [[https://github.com/matthewbauer/bauer][BAUER]], this distribution mostly focuses on programming and is not made using org mode.
+Instead it's made by concatenating elisp files, which can be done because all packages are installed using [[https://github.com/jwiegley/use-package][use-package]] and thus should be position-independent
+
+You can install this distribution using [[https://nixos.org/download.html][nix]] like this:
+#+BEGIN_SRC sh
+nix-env -if https://github.com/crazazy/EMACS/archive/master.tar.gz -A
+#+END_SRC
