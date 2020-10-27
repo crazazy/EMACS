@@ -44,3 +44,4 @@
                   (rust-format-buffer))))))
 
 (provide 'lang-rust)
+

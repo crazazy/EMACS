@@ -15,3 +15,4 @@
   (("\\.php\\'" . phpunit-mode)))
 
 (provide 'lang-php)
+

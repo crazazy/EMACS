@@ -17,3 +17,4 @@
   (add-hook 'racket-repl-mode-hook 'company-mode))
 
 (provide 'lang-racket)
+

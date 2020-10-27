@@ -83,3 +83,4 @@
 (add-hook 'c++-mode-hook 'alexott/cedet-hook)
 
 (provide 'lang-c)
+

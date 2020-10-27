@@ -30,3 +30,4 @@
       (setq hindent-reformat-buffer-on-save t))))
 
 (provide 'lang-haskell)
+
