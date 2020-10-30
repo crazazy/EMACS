@@ -1,6 +1,6 @@
-{ pkgs ? import <nixpkgs> {} }:
+{ pkgs ? import <nixpkgs> { } }:
 let
-  inherit (pkgs) stdenv runCommand emacsWithPackages makeWrapper;
+  inherit (pkgs) runCommand emacsWithPackages;
   inherit (builtins) attrNames concatStringsSep readDir foldl' readFile toFile;
   srcFiles = attrNames (readDir ./elisp);
   bigConfigStr = concatStringsSep "\n" (map (n: readFile (./elisp + ("/" + n))) srcFiles);
@@ -18,11 +18,11 @@ let
     "semantic"
     "windmove"
   ];
-  customConfig = runCommand "config.el" {} ''
+  customConfig = runCommand "config.el" { } ''
     mkdir -p $out/share/emacs/site-lisp
     cp ${bigConfig} $out/share/emacs/site-lisp/default.el
   '';
-  deps = runCommand "deps.nix" {} (''
+  deps = runCommand "deps.nix" { } (''
     cat > $out << EOF
     config: epkgs: with (epkgs // epkgs.melpaPackages); [
     config
@@ -34,4 +34,4 @@ let
   '' + (concatStringsSep "\n" (map (n: "sed -i /${n}/d $out") blackList)));
   emacs = emacsWithPackages (import (deps.outPath) customConfig);
 in
-  emacs
+emacs
