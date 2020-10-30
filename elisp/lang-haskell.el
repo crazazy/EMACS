@@ -21,13 +21,11 @@
 
   ;; hindent - format haskell code automatically
   ;; https://github.com/chrisdone/hindent
-  (when (executable-find "hindent")
-    (use-package hindent
-      :diminish hindent-mode
-      :config
-      (add-hook 'haskell-mode-hook #'hindent-mode)
-      ;; reformat the buffer using hindent on save
-      (setq hindent-reformat-buffer-on-save t))))
+  (when (executable-find "ormolu")
+    (use-package ormolu
+	:hook (haskell-mode . ormolu-format-on-save-mode)
+	:bind
+	(:map haskell-mode-map
+	    ("C-c r" . ormolu-format-buffer))))
 
 (provide 'lang-haskell)
-

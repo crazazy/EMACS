@@ -16,6 +16,7 @@
   (package-install 'use-package))
 
 (add-to-list 'load-path (concat user-emacs-directory "elisp"))
+(add-to-list 'load-path (concat user-emacs-directory "borked"))
 
 (require '_base)
 (require 'base-theme)
