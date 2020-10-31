@@ -1,9 +1,8 @@
 #+title: Crazazy's EMACS distribution
 #+author: Crazazy
 
-This Emacs distribution is made in such a way that it can also be installed via nix
-
-Unlike [[https://github.com/matthewbauer/bauer][BAUER]], another nix-based emacs IDE, this distribution is not written in org mode and is split into multiple elisp files and is based on [[https://github.com/editor-bootstrap/emacs-bootstrap][emacs-bootstrap]].
+This Emacs distribution is made in such a way that it can also be installed via [[https:nixos.org][nix]].
+It's written in regular emacs lisp, is split into multiple elisp files and is based on [[https://github.com/editor-bootstrap/emacs-bootstrap][emacs-bootstrap]].
 It's made by concatenating elisp files with nix, which can be done because all packages are installed using [[https://github.com/jwiegley/use-package][use-package]] and thus should be position-independent
 * Usage:
 ** Installation
@@ -17,7 +16,7 @@ It's made by concatenating elisp files with nix, which can be done because all p
     #+BEGIN_SRC sh
     git clone https://github.com/crazazy/EMACS ~/.emacs.d
     #+END_SRC
-    Do keep in mind that only a subset of all the modules are enable like this, as I found emacs to be quite slow when compiling files itself!
+    Do keep in mind that only a subset of all the modules are enabled like this, as I found emacs to be quite slow when compiling files itself!
 ** Using your own configurations
     The nix side of this project has been designed to support your own elisp config! This way you can quickly compile your emacs distribution, as nix compiles elisp files faster than emacs does. However, there are some limitations that apply when using this emacs framework:
     - you only use =use-package= to import external packages
