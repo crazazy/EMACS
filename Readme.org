@@ -3,10 +3,34 @@
 
 This Emacs distribution is made in such a way that it can also be installed via nix
 
-Unlike [[https://github.com/matthewbauer/bauer][BAUER]], this distribution is split into multiple elisp files and is based on [[https://github.com/editor-bootstrap/emacs-bootstrap][emacs-bootstrap]].
+Unlike [[https://github.com/matthewbauer/bauer][BAUER]], another nix-based emacs IDE, this distribution is not written in org mode and is split into multiple elisp files and is based on [[https://github.com/editor-bootstrap/emacs-bootstrap][emacs-bootstrap]].
 It's made by concatenating elisp files with nix, which can be done because all packages are installed using [[https://github.com/jwiegley/use-package][use-package]] and thus should be position-independent
+* Usage:
+** Installation
+*** Installation with nix
+    You can install this distribution using [[https://nixos.org/download.html][nix]] like this:
+    #+BEGIN_SRC sh
+    nix-env -if https://github.com/crazazy/EMACS/archive/master.tar.gz -A
+    #+END_SRC
+*** Installation without nix
+    You can also just use this repository as your .emacs.d like so:
+    #+BEGIN_SRC sh
+    git clone https://github.com/crazazy/EMACS ~/.emacs.d
+    #+END_SRC
+    Do keep in mind that only a subset of all the modules are enable like this, as I found emacs to be quite slow when compiling files itself!
+** Using your own configurations
+    The nix side of this project has been designed to support your own elisp config! This way you can quickly compile your emacs distribution, as nix compiles elisp files faster than emacs does. However, there are some limitations that apply when using this emacs framework:
+    - you only use =use-package= to import external packages
+    - you don't use =:ensure= to change what package your actually pulling from the package archives
+    - all the packages that you're pulling come from either elpa or melpa (stable or unstable)
 
-You can install this distribution using [[https://nixos.org/download.html][nix]] like this:
-#+BEGIN_SRC sh
-nix-env -if https://github.com/crazazy/EMACS/archive/master.tar.gz -A
-#+END_SRC
+    If you want to change some of the settings that have been made to this emacs, feel free to copy [[file:elisp/_base.el][_base.el]] into your own config directory, under the same name.
+    Make sure the following code is in your _base.el
+    #+BEGIN_SRC elisp
+    (unless (boundp 'package-installed-p)
+    (package-initialize t)
+    (setq package-archives nil))
+
+    (require 'use-package)
+    #+END_SRC
+    This sets up package.el so that it won't try to check external package archives and only initialize if you didnt initialize it before (see [[file:init.el][init.el]])
