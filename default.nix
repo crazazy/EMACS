@@ -1,9 +1,10 @@
-{ pkgs ? import <nixpkgs> { } }:
+{ pkgs ? import <nixpkgs> { }, configDir ? ./elisp}:
 let
   inherit (pkgs) runCommand emacsWithPackages;
-  inherit (builtins) attrNames concatStringsSep readDir foldl' readFile toFile;
-  srcFiles = attrNames (readDir ./elisp);
-  bigConfigStr = concatStringsSep "\n" (map (n: readFile (./elisp + ("/" + n))) srcFiles);
+  inherit (builtins) attrNames concatStringsSep readDir foldl' pathExists readFile toFile;
+  srcFiles = attrNames (readDir configDir);
+  hasBase = pathExists (configDir + "/_base.el");
+  bigConfigStr = (if hasBase then "" else (readFile ./elisp/_base.el)) + (concatStringsSep "\n" (map (n: readFile (configDir + ("/" + n))) srcFiles));
   bigConfig = toFile "emacsrc" bigConfigStr;
   customConfig = runCommand "config.el" { } ''
     mkdir -p $out/share/emacs/site-lisp
@@ -11,7 +12,7 @@ let
   '';
   deps = runCommand "deps.nix" { } ''
     cat > $out << EOF
-    config: epkgs: with epkgs; [ config ] ++ map (e: builtins.getAttr e epkgs) (builtins.filter (v: builtins.hasAttr v epkgs)[
+    config: epkgs: [ config ] ++ map (e: builtins.getAttr e epkgs) (builtins.filter (v: builtins.hasAttr v epkgs) [
     "use-package"
     EOF
 
