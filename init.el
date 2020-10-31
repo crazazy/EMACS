@@ -25,9 +25,7 @@
 (require 'base-functions)
 (require 'base-global-keys)
 (require 'base-evil)
-(require 'lang-nix)
+
 (require 'lang-python)
-
 (require 'lang-javascript)
-
 (require 'lang-web)
