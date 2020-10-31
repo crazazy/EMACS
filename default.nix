@@ -1,10 +1,11 @@
-{ pkgs ? import <nixpkgs> { }, configDir ? ./elisp}:
+{ pkgs ? import <nixpkgs> { }, configDir ? ./elisp }:
 let
   inherit (pkgs) runCommand emacsWithPackages;
   inherit (builtins) attrNames concatStringsSep readDir foldl' pathExists readFile toFile;
   srcFiles = attrNames (readDir configDir);
   hasBase = pathExists (configDir + "/_base.el");
-  bigConfigStr = (if hasBase then "" else (readFile ./elisp/_base.el)) + (concatStringsSep "\n" (map (n: readFile (configDir + ("/" + n))) srcFiles));
+  bigConfigStr = (if hasBase then "" else (readFile ./elisp/_base.el)) +
+                 (concatStringsSep "\n" (map (n: readFile (configDir + ("/" + n))) srcFiles));
   bigConfig = toFile "emacsrc" bigConfigStr;
   customConfig = runCommand "config.el" { } ''
     mkdir -p $out/share/emacs/site-lisp
