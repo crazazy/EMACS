@@ -19,6 +19,7 @@
 (add-to-list 'load-path (concat user-emacs-directory "elisp"))
 ; (add-to-list 'load-path (concat user-emacs-directory "borked"))
 
+(setq dummy t)
 (require '_base)
 (require 'base-theme)
 (require 'base-extensions)

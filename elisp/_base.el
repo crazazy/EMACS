@@ -1,4 +1,4 @@
-(unless (boundp 'package-installed-p)
+(unless (boundp 'dummy)
   (package-initialize t)
   (setq package-archives nil))
 
