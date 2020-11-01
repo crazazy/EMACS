@@ -26,6 +26,6 @@
 	:hook (haskell-mode . ormolu-format-on-save-mode)
 	:bind
 	(:map haskell-mode-map
-	    ("C-c r" . ormolu-format-buffer))))
+	    ("C-c r" . ormolu-format-buffer)))))
 
 (provide 'lang-haskell)
