@@ -2,10 +2,10 @@
   :config
   (add-hook 'elixir-mode-hook 'alchemist-mode))
 
-(use-package flycheck-mix
-  :commands (flycheck-mix-setup))
+;; Deprecated package, need to find alternatives
+;(use-package flycheck-mix
+;  :commands (flycheck-mix-setup))
 
 (use-package elixir-mode)
 
 (provide 'lang-elixir)
-
