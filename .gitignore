@@ -7,6 +7,9 @@
 auto-save-list
 tramp
 .\#*
+private/
+transient/
+.custom.el
 
 # Org-mode
 .org-id-locations
@@ -21,6 +24,9 @@ tramp
 
 # elpa packages
 /elpa/
+
+# elpy environment
+/elpy/
 
 # reftex files
 *.rel
