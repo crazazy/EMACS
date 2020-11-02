@@ -76,6 +76,7 @@
   ;; Magic
   ("C-x g s" . magit-status)
   ("C-x g x" . magit-checkout)
+  ("C-x g l" . magit-clone)
   ("C-x g c" . magit-commit)
   ("C-x g f" . magit-fetch)
   ("C-x g p" . magit-push)
@@ -170,4 +171,3 @@
   (yas-global-mode 1))
 
 (provide 'base-extensions)
-
