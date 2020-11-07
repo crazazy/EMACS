@@ -1,3 +1,6 @@
+;; dummy is a variable that does not get set when we build the configuration
+;; from the nix package manager, this can help speed up use-package stuff
+;; since we can download packages for use-package
 (unless (boundp 'dummy)
   (package-initialize t)
   (setq package-archives nil))
@@ -40,7 +43,7 @@
       inhibit-startup-message            t
       fringes-outside-margins            t
       x-select-enable-clipboard          t
-      use-package-always-ensure          t)
+      use-package-always-ensure          (boundp 'dummy))
 
 ;; Bookmarks
 (setq
