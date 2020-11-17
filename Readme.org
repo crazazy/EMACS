@@ -26,13 +26,10 @@ It's made by concatenating elisp files with nix, which can be done because all p
     If you want to change some of the settings that have been made to this emacs, feel free to copy [[file:elisp/_base.el][_base.el]] into your own config directory, under the same name.
     Make sure the following code is in your _base.el
     #+BEGIN_SRC elisp
-    (unless (boundp 'package-installed-p)
-    (package-initialize t)
-    (setq package-archives nil))
-
     (require 'use-package)
+    (setq use-package-always-ensure nil)
     #+END_SRC
-    This sets up package.el so that it won't try to check external package archives and only initialize if you didnt initialize it before (see [[file:init.el][init.el]])
+    This prevents use-package from using =package.el=, which we don't need since we're providing all the packages we need to use-package already via nix.
 
 ** The default distribution
    By default, this distribution comes with support for most of the languages emacs-bootstrap comes with, this is [[file:elisp/lang-c.el][C/C++]], [[file:elisp/lang-go.el][Go]], [[file:elisp/lang-haskell.el][haskell]], [[file:elisp/lang-javascript.el][javascript]], [[file:elisp/lang-php.el][php]], [[file:elisp/lang-python.el][python]], [[file:elisp/lang-racket.el][racket]], [[file:elisp/lang-ruby.el][ruby]], [[file:elisp/lang-rust.el][rust]] and [[file:elisp/lang-web.el][webdev]] in general.
