@@ -1,5 +1,4 @@
 (use-package evil
-  :ensure t
   :init
   (setq evil-want-integration t) ;; This is optional since it's already set to t by default.
   (setq evil-want-keybinding nil)
@@ -12,9 +11,7 @@
 
 (use-package evil-collection
   :after evil
-  :ensure t
   :config
   (evil-collection-init))
 
 (provide 'base-evil)
-
