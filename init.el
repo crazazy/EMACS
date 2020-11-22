@@ -23,6 +23,7 @@
 (require '_base)
 (require 'base-theme)
 (require 'base-extensions)
+(require 'base-org)
 (require 'base-functions)
 (require 'base-global-keys)
 (require 'base-evil)
