@@ -13,6 +13,7 @@
    ("\\.mustache\\'" . web-mode)
    ("\\.djhtml\\'" . web-mode)
    ("\\.vue\\'" . web-mode)
+   ("\\.svelte\\'" . web-mode)
    ("\\.jsx$" . web-mode))
   :config
   (setq web-mode-markup-indent-offset 2
@@ -94,4 +95,3 @@
   :commands (impatient-mode))
 
 (provide 'lang-web)
-
