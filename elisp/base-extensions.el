@@ -120,6 +120,7 @@
 (use-package restart-emacs
   :bind
   ("ESC C-r" . restart-emacs)) ;; This is like one of the few keybinds left
+
 (use-package smartparens)
 
 (use-package undo-tree

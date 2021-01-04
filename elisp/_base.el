@@ -4,6 +4,13 @@
 (defconst temp-dir (format "%s/cache" private-dir)
   "Hostname-based elisp temp directories")
 
+;; Temporarily increase garbage heap upon init
+(let ((init-garbage-collect (* 256 1024 1024))
+      (normal-garbage-collect (* 20 1024 1024)))
+  (setq gc-cons-threshold init-garbage-collect)
+  (add-hook 'emacs-startup-hook
+	    (lambda () (setq gc-cons-threshold normal-garbage-collect))))
+
 ;; Core settings
 ;; UTF-8 please
 (set-charset-priority 'unicode)
