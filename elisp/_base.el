@@ -5,11 +5,16 @@
   "Hostname-based elisp temp directories")
 
 ;; Temporarily increase garbage heap upon init
-(let ((init-garbage-collect (* 256 1024 1024))
-      (normal-garbage-collect (* 20 1024 1024)))
-  (setq gc-cons-threshold init-garbage-collect)
+
+(let ((normal-gc-cons-threshold (* 20 1024 1024))
+      (init-gc-cons-threshold (* 128 1024 1024)))
+  (setq my/old-gc-cons-threshold normal-gc-cons-threshold)
+  (setq gc-cons-threshold init-gc-cons-threshold)
   (add-hook 'emacs-startup-hook
-	    (lambda () (setq gc-cons-threshold normal-garbage-collect))))
+            (lambda ()
+	      (setq gc-cons-threshold my/old-gc-cons-threshold)
+	      (setq my/old-gc-cons-threshold nil)
+	      )))
 
 ;; Core settings
 ;; UTF-8 please

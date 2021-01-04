@@ -114,7 +114,8 @@
 
 (use-package recentf
   :config
-  (setq recentf-save-file (recentf-expand-file-name "~/.emacs.d/private/cache/recentf"))
+  (setq recentf-keep '(file-remote-p file-readable-p))
+  (setq recentf-save-file (expand-file-name "~/.emacs.d/private/cache/recentf"))
   (recentf-mode 1))
 
 (use-package restart-emacs
@@ -149,6 +150,9 @@
 (use-package yasnippet
   :defer
   :config
-  (yas-global-mode 1))
+  (setq yas-snippet-dirs '())
+  (use-package yasnippet-snippets)
+  ;; don't need to reload all, since we only load the library directory
+  (add-hook 'prog-mode-hook #'yas-minor-mode))
 
 (provide 'base-extensions)
