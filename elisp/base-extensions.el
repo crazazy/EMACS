@@ -74,15 +74,17 @@
 
   :bind
   ;; Magic
-  ("C-x g s" . magit-status)
-  ("C-x g x" . magit-checkout)
-  ("C-x g l" . magit-clone)
-  ("C-x g c" . magit-commit)
-  ("C-x g f" . magit-fetch)
-  ("C-x g p" . magit-push)
-  ("C-x g u" . magit-pull)
-  ("C-x g e" . magit-ediff-resolve)
-  ("C-x g r" . magit-rebase-interactive))
+  ;;("C-x g s" . magit-status)
+  ;;("C-x g x" . magit-checkout)
+  ;;("C-x g l" . magit-clone)
+  ;;("C-x g c" . magit-commit)
+  ;;("C-x g f" . magit-fetch)
+  ;;("C-x g p" . magit-push)
+  ;;("C-x g u" . magit-pull)
+  ;;("C-x g e" . magit-ediff-resolve)
+  ;;("C-x g r" . magit-rebase-interactive)
+  ("C-x g" . magit-status))
+
 
 (use-package magit-popup)
 
