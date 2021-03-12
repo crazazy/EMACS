@@ -124,7 +124,9 @@
   :bind
   ("ESC C-r" . restart-emacs)) ;; This is like one of the few keybinds left
 
-(use-package smartparens)
+(use-package smartparens
+  :config
+  (add-hook 'prog-mode-hook 'smartparens-mode))
 
 (use-package undo-tree
   :config
@@ -153,8 +155,10 @@
   :defer
   :config
   (setq yas-snippet-dirs '())
-  (use-package yasnippet-snippets)
+  (use-package yasnippet-snippets
+    :config
+    (yasnippet-snippets-initialize))
   ;; don't need to reload all, since we only load the library directory
-  (add-hook 'prog-mode-hook #'yas-minor-mode))
+  (add-hook 'prog-mode-hook 'yas-minor-mode))
 
 (provide 'base-extensions)
