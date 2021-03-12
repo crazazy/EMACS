@@ -4,6 +4,8 @@
 
 
 (use-package company
+  :bind
+  ("C-SPC" . company-complete)
   :config
   (add-hook 'after-init-hook 'global-company-mode))
 
