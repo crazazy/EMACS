@@ -1,6 +1,7 @@
 (use-package ac-php)
 
 (use-package php-mode
+  :after company-mode
   :mode
   (("\\.php\\'" . php-mode))
   :config
@@ -15,4 +16,3 @@
   (("\\.php\\'" . phpunit-mode)))
 
 (provide 'lang-php)
-

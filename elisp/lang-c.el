@@ -50,6 +50,7 @@
 
 ;; company-c-headers
 (use-package company-c-headers
+  :after company-mode
   :init
   (add-to-list 'company-backends 'company-c-headers))
 
@@ -83,4 +84,3 @@
 (add-hook 'c++-mode-hook 'alexott/cedet-hook)
 
 (provide 'lang-c)
-
