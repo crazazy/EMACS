@@ -9,15 +9,15 @@
   (defun my-haskell-mode-hook ()
     "Hook for `haskell-mode'."
     (set (make-local-variable 'company-backends)
-         '((company-intero company-files))))
+         '((dante-company company-files))))
   (add-hook 'haskell-mode-hook 'my-haskell-mode-hook)
   (add-hook 'haskell-mode-hook 'company-mode)
   (add-hook 'haskell-mode-hook 'haskell-indentation-mode)
 
   ;; intero-mode for a complete IDE solution to haskell
   ;; commercialhaskell.github.io/intero
-  (use-package intero
-    :config (add-hook 'haskell-mode-hook 'intero-mode))
+  (use-package dante
+    :config (add-hook 'haskell-mode-hook 'dante-mode))
 
   ;; hindent - format haskell code automatically
   ;; https://github.com/chrisdone/hindent
