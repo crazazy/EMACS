@@ -11,8 +11,11 @@
 (use-package org-projectile
   :config
   (org-projectile-per-project)
-  (setq org-projectile-per-project-filepath "todo.org"
-	org-agenda-files (append org-agenda-files (org-projectile-todo-files))))
+  (setq org-projectile-per-project-filepath "todo.org")
+  (add-hook 'after-init-hook (lambda ()
+			      "add todo.org as a project file if it exists"
+			      (when (file-exists-p (concat (file-name-directory buffer-file-name) org-projectile-per-project-filepath))
+				(set org-agenda-files (append org-agenda-files (org-projectile-todo-files)))))))
 
 (use-package org-bullets
   :config
