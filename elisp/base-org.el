@@ -2,6 +2,8 @@
   :config
   (setq org-directory "~/org-files"
         org-default-notes-file (concat org-directory "/todo.org"))
+  (unless (file-exists-p org-default-notes-file)
+    (make-empty-file org-default-notes-file t))
   :bind
   ("C-c l" . org-store-link)
   ("C-c a" . org-agenda))
