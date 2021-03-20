@@ -1,6 +1,6 @@
 (use-package org
   :config
-  (setq org-directory "~/org-files"
+  (setq org-directory (concat user-emacs-directory "/org-files")
         org-default-notes-file (concat org-directory "/todo.org"))
   (unless (file-exists-p org-default-notes-file)
     (make-empty-file org-default-notes-file t))

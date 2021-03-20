@@ -44,6 +44,9 @@ flycheck_*.el
 # server auth directory
 /server/
 
+# org mode
+/org-files/
+
 # projectiles files
 .projectile
 
