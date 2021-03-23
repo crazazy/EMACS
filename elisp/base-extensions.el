@@ -7,7 +7,7 @@
   :bind
   ("C-SPC" . company-complete)
   :config
-  (add-hook 'after-init-hook 'global-company-mode))
+  (global-company-mode))
 
 (use-package dashboard
   :config
@@ -128,7 +128,9 @@
 
 (use-package smartparens
   :config
-  (add-hook 'prog-mode-hook 'smartparens-mode))
+  (add-hook 'lisp-mode-hook 'smartparens-mode)
+  (add-hook 'nix-mode-hook 'smartparens-mode)
+  )
 
 (use-package undo-tree
   :config
