@@ -6,7 +6,10 @@
   (evil-define-key 'normal global-map "," 'evil-execute-in-god-state)
   (evil-mode 1))
 
-(use-package evil-god-state)
+(use-package evil-god-state
+  :bind
+  ("M-," . evil-god-state-bail))
+
 (use-package god-mode)
 
 (use-package evil-collection
