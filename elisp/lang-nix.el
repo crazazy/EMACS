@@ -1,7 +1,6 @@
 (use-package nix-mode
   :mode "\\.nix\\'"
   :config
-
   ;; the company-nix backend is not available in melpa, but has no new dependencies
   (unless (package-installed-p 'company-nix)
     (with-temp-buffer
@@ -12,5 +11,13 @@
 				  '((company-nix)))))
   (add-hook 'nix-mode-hook 'company-mode)
   )
+
+(use-package nix-sandbox
+  :after flycheck
+  :config
+  (setq flycheck-command-wrapper-function
+        (lambda (command) (apply 'nix-shell-command (nix-current-sandbox) command))
+        flycheck-executable-find
+        (lambda (cmd) (nix-executable-find (nix-current-sandbox) cmd))))
 
 (provide 'lang-nix)
