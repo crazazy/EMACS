@@ -132,7 +132,14 @@
   :config
   (add-hook 'emacs-lisp-mode-hook 'smartparens-mode)
   (add-hook 'lisp-mode-hook 'smartparens-mode)
+  (sp-with-modes '(lisp-mode emacs-lisp-mode)
+    (sp-local-pair "'" nil :actions nil)
+    (sp-local-pair "`" nil :actions nil))
+
   (add-hook 'nix-mode-hook 'smartparens-mode)
+  (sp-with-modes '(nix-mode)
+    (sp-local-pair "'" nil :actions nil)
+    (sp-local-pair "''" "''"))
   )
 
 (use-package undo-tree
