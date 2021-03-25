@@ -7,7 +7,8 @@
   :bind
   ("C-SPC" . company-complete)
   :config
-  (global-company-mode))
+  (add-hook 'after-init-hook 'global-company-mode)
+  (add-hook 'lisp-mode-hook 'company-mode))
 
 (use-package dashboard
   :config
