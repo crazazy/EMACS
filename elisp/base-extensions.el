@@ -8,6 +8,7 @@
   ("C-SPC" . company-complete)
   :config
   (add-hook 'after-init-hook 'global-company-mode)
+  (add-hook 'emacs-lisp-mode-hook 'company-mode)
   (add-hook 'lisp-mode-hook 'company-mode))
 
 (use-package dashboard
@@ -129,6 +130,7 @@
 
 (use-package smartparens
   :config
+  (add-hook 'emacs-lisp-mode-hook 'smartparens-mode)
   (add-hook 'lisp-mode-hook 'smartparens-mode)
   (add-hook 'nix-mode-hook 'smartparens-mode)
   )
