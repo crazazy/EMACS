@@ -9,9 +9,9 @@
     (lisp-interaction-mode))
 
 ;; irc quick logins
-(defmacro irc-quickjoin (serverfunc url &optional nick)
+(defmacro irc-quickjoin (servername url &optional nick)
   "create a function to quickly join a server"
-  `(defun ,serverfunc (password)
+  `(defun ,(intern (concat (symbol-name servername) "-irc")) (password)
      (interactive (list (password-read "Password: ")))
      (erc-tls :server ,url
 	      :nick ,(if nick
@@ -20,7 +20,7 @@
 	      :port 6697
 	      :password password)))
 
-(irc-quickjoin tilde-irc "eu.tilde.chat")
-(irc-quickjoin freenode-irc "irc.freenode.net")
+(irc-quickjoin tilde "eu.tilde.chat")
+(irc-quickjoin freenode "irc.freenode.net")
 
 (provide 'base-functions)
