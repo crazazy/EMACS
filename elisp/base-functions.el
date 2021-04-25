@@ -10,7 +10,7 @@
 
 ;; irc quick logins
 (defmacro irc-quickjoin (servername url &optional nick)
-  "create a function to quickly join a server"
+  "create a function to quickly join a server. Servers can be joined with M-x SERVERNAME-irc"
   `(defun ,(intern (concat (symbol-name servername) "-irc")) (password)
      (interactive (list (password-read "Password: ")))
      (erc-tls :server ,url
