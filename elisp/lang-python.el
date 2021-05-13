@@ -11,6 +11,11 @@
     :init
     (add-to-list 'auto-mode-alist '("\\.py$" . python-mode))
     :config
+    (add-hook 'python-mode-hook (lambda ()
+				  (set (make-local-variable
+					'nix-buffer-sandbox
+					(nix-find-sandbox (nix-env-from-packages "Python"
+										 "(python38.withPackages (p: with p; [flake8 mypy black virtualenv-wrapper pyenv]))"))))))
     (setq elpy-rpc-backend "jedi")
     ;; (add-hook 'python-mode-hook 'py-autopep8-enable-on-save)
     ;;flycheck-python-flake8-executable "/usr/local/bin/flake8"
@@ -62,4 +67,3 @@
 
 (provide 'lang-python)
 ;;; base-python.el ends here
-
