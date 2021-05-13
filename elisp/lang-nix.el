@@ -12,12 +12,34 @@
   (add-hook 'nix-mode-hook 'company-mode)
   )
 
+(defun nix-env-from-packages (name &rest packages)
+  "create a nix environment from nix packages. returns the location of the environment"
+  (interactive (append
+		(list (read-string "Environment name: " nil nil "nameless"))
+		(split-string (read-string "Packages: "))))
+  (with-temp-buffer
+    (insert (format "
+{ pkgs ? import %s {}}:
+with pkgs;
+buildEnv {
+name = %s;
+paths = [
+%s
+];
+}
+    " (or nix-nixpkgs-path "<nixpkgs>") name (apply 'concat (intersperse "\n" packages))))
+    (write-file (concat temporary-file-directory name "-env/default.nix"))
+    (concat temporary-file-directory name "-env")))
+
 (use-package nix-sandbox
   :after flycheck
   :config
-  (setq flycheck-command-wrapper-function
-        (lambda (command) (apply 'nix-shell-command (nix-current-sandbox) command))
+  (setq nix-universal-sandbox
+	(nix-find-sandbox (nix-env-from-packages "swiss-knife" "stdenv" "nix" "nixpkgs-fmt" "ripgrep"))
+	nix-buffer-sandbox nil
+        flycheck-command-wrapper-function
+        (lambda (command) (apply 'nix-shell-command (or nix-buffer-sandbox nix-universal-sandbox) command))
         flycheck-executable-find
-        (lambda (cmd) (nix-executable-find (nix-current-sandbox) cmd))))
+        (lambda (cmd) (nix-executable-find (or nix-buffer-sandbox nix-universal-sandbox) cmd))))
 
 (provide 'lang-nix)
