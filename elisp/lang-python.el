@@ -4,18 +4,18 @@
 
 ;;; Code:
 
+(setq python-sandbox
+      (nix-env-from-packages "Python"
+			     "(python38.withPackages (p: with p; [flake8 mypy black virtualenv-wrapper pyenv]))"))
 (use-package python
   :mode ("\\.py" . python-mode)
   :config
+
+  (add-hook 'python-mode (set (make-local-variable 'nix-buffer-sandbox) python-sandbox))
   (use-package elpy
     :init
     (add-to-list 'auto-mode-alist '("\\.py$" . python-mode))
     :config
-    (add-hook 'python-mode-hook (lambda ()
-				  (set (make-local-variable
-					'nix-buffer-sandbox
-					(nix-find-sandbox (nix-env-from-packages "Python"
-										 "(python38.withPackages (p: with p; [flake8 mypy black virtualenv-wrapper pyenv]))"))))))
     (setq elpy-rpc-backend "jedi")
     ;; (add-hook 'python-mode-hook 'py-autopep8-enable-on-save)
     ;;flycheck-python-flake8-executable "/usr/local/bin/flake8"
@@ -32,8 +32,9 @@
 
 
 (use-package pyenv-mode
+  :after python nix-sandbox
   :if
-  (executable-find "pyenv")
+  (nix-executable-find python-sandbox "pyenv")
   :init
   (add-to-list 'exec-path "~/.pyenv/shims")
   (setenv "WORKON_HOME" "~/.pyenv/versions/")
