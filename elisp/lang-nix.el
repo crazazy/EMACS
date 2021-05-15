@@ -20,26 +20,31 @@
   (with-temp-buffer
     (insert (format "
 { pkgs ? import %s {}}:
-with pkgs;
-buildEnv {
-name = %s;
-paths = [
+pkgs.mkShell {
+buildInputs = with pkgs;[
 %s
 ];
 }
-    " (or nix-nixpkgs-path "<nixpkgs>") name (apply 'concat (intersperse "\n" packages))))
-    (write-file (concat temporary-file-directory name "-env/default.nix"))
-    (concat temporary-file-directory name "-env")))
+    " (or nix-nixpkgs-path "<nixpkgs>") (apply 'concat (intersperse "\n" packages))))
+    (write-file (concat temporary-file-directory name "-env/shell.nix"))
+    (nix-find-sandbox (concat temporary-file-directory name "-env"))))
 
 (use-package nix-sandbox
   :after flycheck
   :config
+
+  (defun nix-executable-find (sandbox executable)
+    "finds an EXECUTABLE in SANDBOX"
+    (set (make-local-variable 'exec-path) (nix-exec-path sandbox))
+    (executable-find executable))
+
   (setq nix-universal-sandbox
-	(nix-find-sandbox (nix-env-from-packages "swiss-knife" "stdenv" "nix" "nixpkgs-fmt" "ripgrep"))
+	(nix-env-from-packages "swiss-knife" "stdenv" "nix" "nixpkgs-fmt" "ripgrep")
 	nix-buffer-sandbox nil
         flycheck-command-wrapper-function
         (lambda (command) (apply 'nix-shell-command (or nix-buffer-sandbox nix-universal-sandbox) command))
         flycheck-executable-find
         (lambda (cmd) (nix-executable-find (or nix-buffer-sandbox nix-universal-sandbox) cmd))))
+
 
 (provide 'lang-nix)
