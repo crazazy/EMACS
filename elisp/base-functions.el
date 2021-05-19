@@ -27,6 +27,6 @@
 	      :password password)))
 
 (irc-quickjoin tilde "eu.tilde.chat")
-(irc-quickjoin freenode "irc.freenode.net")
+(irc-quickjoin libera "irc.libera.chat")
 
 (provide 'base-functions)
