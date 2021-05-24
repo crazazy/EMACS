@@ -4,13 +4,14 @@
 
 ;;; Code:
 
-(setq python-sandbox
-      (nix-env-from-packages "Python"
-			     "(python38.withPackages (p: with p; [flake8 mypy black virtualenv-wrapper pyenv]))"))
 (use-package python
   :mode ("\\.py" . python-mode)
   :config
 
+  (setq python-sandbox
+	(nix-env-from-packages
+	 "Python"
+	 "(python38.withPackages (p: with p; [flake8 mypy black virtualenv-wrapper pyenv]))"))
   (add-hook 'python-mode (set (make-local-variable 'nix-buffer-sandbox) python-sandbox))
   (use-package elpy
     :init
