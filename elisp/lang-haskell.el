@@ -12,7 +12,7 @@
     (set (make-local-variable 'company-backends)
          '((dante-company company-files))))
   (setq haskell-sandbox (nix-env-from-packages "Haskell"
-					       "ghc"
+					       "(ghc.withPackages (p: with p; [QuickCheck rio]))"
 					       "stack"
 					       "cabal-install"
 					       "haskellPackages.fourmolu"))
