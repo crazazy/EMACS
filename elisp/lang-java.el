@@ -1,14 +1,16 @@
-(use-package jdee
+(use-package meghanada
+  :after nix-sandbox
   :config
-  ;; auto-compile jdee-server
-  (defun compile-jdee-server ()
-    (let ((jdee-dir (expand-file-name "jdee" user-emacs-directory))
-	(git (executable-find "git"))
-	(maven (executable-find "mvn")))
-    (unless (file-exists-p jdee-dir)
-      (unless (and git maven)
-	(error "Make sure maven and git are installed"))
-      (shell-command (concat git " clone https://github.com/jdee-emacs/jdee-server " jdee-dir))
-      (shell-command (concat "cd " jdee-dir " && " maven " package")))
-    (setq jdee-server-dir jdee-dir)))
-  (add-hook 'jdee-mode 'compile-jdee-server))
+  (setq java-env (nix-env-from-packages "java"
+			 "adoptopenjdk-hotspot-bin-11"
+			 "(maven.override {jdk = adoptopenjdk-hotspot-bin-11;})"))
+  (add-hook 'java-mode-hook
+          (lambda ()
+	    (setq meghanada-java-path (nix-executable-find java-env "java"))
+	    (setq meghanada-maven-path (nix-executable-find java-env "mvn"))
+            ;; meghanada-mode on
+            (meghanada-mode t)
+            (flycheck-mode +1)
+            (setq c-basic-offset 2)
+            ;; use code format
+            (add-hook 'before-save-hook 'meghanada-code-beautify-before-save))))
