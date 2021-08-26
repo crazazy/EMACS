@@ -21,6 +21,14 @@
   (setq-default ediff-highlight-all-diffs 'nil)
   (setq ediff-diff-options "-w"))
 
+(use-package elfeed
+  :bind
+  ("C-x w" . elfeed)
+  (:map elfeed-search-mode-map
+	("C-c a" . elfeed-add-feed)
+	("C-c u" . elfeed-update)
+	("C-c f" . elfeed-update-feed)))
+
 (use-package exec-path-from-shell
   :config
   ;; Add GOPATH to shell
