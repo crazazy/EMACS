@@ -27,7 +27,9 @@
   (:map elfeed-search-mode-map
 	("C-c a" . elfeed-add-feed)
 	("C-c u" . elfeed-update)
-	("C-c f" . elfeed-update-feed)))
+	("C-c f" . elfeed-update-feed))
+  :config
+  (setq-default elfeed-search-filter "@1-week-ago"))
 
 (use-package exec-path-from-shell
   :config
