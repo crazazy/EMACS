@@ -80,6 +80,9 @@
   (setq linum-format " %3d ")
   (global-linum-mode nil))
 
+(use-package forge
+  :after magit)
+
 (use-package magit
   :defer t
   :config
