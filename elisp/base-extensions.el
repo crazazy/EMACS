@@ -28,8 +28,28 @@
 	("C-c a" . elfeed-add-feed)
 	("C-c u" . elfeed-update)
 	("C-c f" . elfeed-update-feed))
-  :config
-  (setq-default elfeed-search-filter "@1-week-ago"))
+  :custom
+  (elfeed-search-filter "@6-months-ago +quality")
+  (elfeed-feeds  '(("http://feeds.feedburner.com/tweakers/nieuws" NL tech exportable)
+		   ("https://discourse.nixos.org/c/announcements/8.rss" nixos programming quality)
+                   ("http://www.dnbradio.com/feeds" music podcasts)
+                   ("https://codepen.io/spark/feed/" programming quality)
+                   ("https://envs.net/~lucidiot/rsrsss/feed.xml" RSS quality)
+                   ("https://falseknees.tumblr.com/rss" comics quality)
+                   ("https://hackspace.raspberrypi.org/feed" tech programming)
+                   ("https://lobste.rs/rss" programming)
+                   ("https://news.rickcarlino.com/rss.rss" tech)
+                   ("https://nu.nl/rss" NL news exportable)
+                   ("https://planet.haskell.org/atom.xml" haskell programming)
+                   ("https://planet.nixos.org/atom.xml" nixos programming quality)
+                   ("https://reddit.com/r/dnb/.rss" reddit music)
+                   ("https://reddit.com/r/programming/.rss" reddit programming)
+                   ("https://reddit.com/r/realdubstep/.rss" reddit music)
+                   ("https://reddit.com/r/thenetherlands/.rss" NL reddit)
+                   ("https://sachachua.com/blog/category/emacs-news/feed" emacs quality programming)
+                   ("https://webzine.puffy.cafe/atom.xml" openbsd tech quality programming)
+                   ("https://www.fosskers.ca/en/rss" programming quality exportable)
+                   ("https://xkcd.com/atom.xml" comics))))
 
 (use-package exec-path-from-shell
   :config
