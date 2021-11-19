@@ -18,9 +18,12 @@ jobs:
 
           # Set NIX_PATH environment variable.
           nix_path: nixpkgs=channel:nixpkgs-unstable
-      - name: Build nix
-        run: nix-build "<nixpkgs>" -A pkgsStatic.nix
-      - name: copy results
+      - uses: cachix/cachix-action@v10
+        with:
+          name: crazazy
+          signingKey: '${{secrets.CACHIX_KEY}}'
+          extraPullNames: nix-community, emacs-ng
+      - name: build appImage
         run: |
           nix-build nix/appimage.nix
  
