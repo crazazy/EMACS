@@ -22,7 +22,7 @@ jobs:
         with:
           name: crazazy
           signingKey: '${{secrets.CACHIX_KEY}}'
-          extraPullNames: nix-community, emacs-ng
+          extraPullNames: nix-community, emacsng
       - name: build appImage
         run: |
           nix-build nix/appimage.nix
