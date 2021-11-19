@@ -25,7 +25,7 @@ jobs:
           extraPullNames: nix-community, emacsng
       - name: build appImage
         run: |
-          nix-build nix/appimage.nix
+          nix-build nix/appimage.nix -A result
  
       - name: Upload results
         uses: actions/upload-artifact@v2
