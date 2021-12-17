@@ -5,10 +5,10 @@
         "homepage": "",
         "owner": "nix-community",
         "repo": "NUR",
-        "rev": "65887ad64ee3adef81b6efbc6d4361a40c5aebe0",
-        "sha256": "1mgg83ymvr5c3fxk0wsy173jk7v2y0sdasakx3vaj4767cdbf5l8",
+        "rev": "62e3c6dbd31f9d2edd2ceca0f66043f92b0f5acb",
+        "sha256": "0glbirb8rc5b7sccrjlk7kr4v1q5xlfx3fqrppcm3nh1ph69rzsx",
         "type": "tarball",
-        "url": "https://github.com/nix-community/NUR/archive/65887ad64ee3adef81b6efbc6d4361a40c5aebe0.tar.gz",
+        "url": "https://github.com/nix-community/NUR/archive/62e3c6dbd31f9d2edd2ceca0f66043f92b0f5acb.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "elisp-tree-sitter": {
@@ -17,10 +17,10 @@
         "homepage": "https://emacs-tree-sitter.github.io",
         "owner": "emacs-tree-sitter",
         "repo": "elisp-tree-sitter",
-        "rev": "8bbbfa4fc5f478f10c7cb968177d5a907fe5928f",
-        "sha256": "1nll9h518i0jh3l04i22wbn3xl535na08525jvgv8s99vrrz4gig",
+        "rev": "48b06796a3b2e76ce004972d929de38146eafaa0",
+        "sha256": "04dlwpi5w1g9v62l51zwa6idsajk6km39ljk2k9z3jrcs0fj22ml",
         "type": "tarball",
-        "url": "https://github.com/emacs-tree-sitter/elisp-tree-sitter/archive/8bbbfa4fc5f478f10c7cb968177d5a907fe5928f.tar.gz",
+        "url": "https://github.com/emacs-tree-sitter/elisp-tree-sitter/archive/48b06796a3b2e76ce004972d929de38146eafaa0.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "emacs-ng": {
@@ -41,10 +41,10 @@
         "homepage": "",
         "owner": "nix-community",
         "repo": "emacs-overlay",
-        "rev": "64265a8c8452ab7426370cac332d81793b3ba9d0",
-        "sha256": "04xrm8cv9qr8a86mdwfqfp8nycm8p89ivrinpq0bzpsj5z3afi5c",
+        "rev": "34bbf91130fc793aa87ae8dff75b6a5a88337188",
+        "sha256": "18y4d0gxy1ir5q5463nfll5lccv0dvgcwp0cqg9gdrhgqyl9hr0p",
         "type": "tarball",
-        "url": "https://github.com/nix-community/emacs-overlay/archive/64265a8c8452ab7426370cac332d81793b3ba9d0.tar.gz",
+        "url": "https://github.com/nix-community/emacs-overlay/archive/34bbf91130fc793aa87ae8dff75b6a5a88337188.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "emacs-webkit": {
