@@ -11,7 +11,7 @@ let
     ];
   };
   emacs-webkit-f = p: import sources.emacs-webkit { inherit pkgs; inherit (p) trivialBuild; };
-  emacs = emacs-ng.pkgs.withPackages (e: [(emacs-webkit-f e) e.evil]);
+  emacs = pkgs.emacsPgtk.pkgs.withPackages (e: [(emacs-webkit-f e) e.evil]);
   bundle = import "${sources.nix-bundle}/appimage-top.nix" { nixpkgs' = sources.nixpkgs; }; 
 in
 with bundle; {
