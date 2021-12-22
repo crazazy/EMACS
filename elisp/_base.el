@@ -53,9 +53,7 @@
       ;; dummy is a variable that does not get set when we build the configuration
       ;; from the nix package manager, this can help speed up use-package stuff
       ;; since we can download packages for use-package
-      use-package-always-ensure          (boundp 'dummy)
-      ;; bootup speed bonus
-      use-package-always-defer           t)
+     use-package-always-ensure          (boundp 'dummy))
 
 ;; Bookmarks
 (setq
