@@ -14,12 +14,14 @@
    ("\\.vue\\'" . web-mode)
    ("\\.svelte\\'" . web-mode)
    ("\\.jsx$" . web-mode))
+  :hook
+  (web-mode . jsx-flycheck)
+  (web-mode . emmet-mode)
+  (web-mode . company-mode)
   :config
   (setq web-mode-markup-indent-offset 2
         web-mode-css-indent-offset 2
         web-mode-code-indent-offset 2)
-
-  (add-hook 'web-mode-hook 'jsx-flycheck)
 
   ;; highlight enclosing tags of the element under cursor
   (setq web-mode-enable-current-element-highlight t)
@@ -39,14 +41,23 @@
   ;; editing enhancements for web-mode
   ;; https://github.com/jtkDvlp/web-mode-edit-element
   (use-package web-mode-edit-element
-    :config (add-hook 'web-mode-hook 'web-mode-edit-element-minor-mode))
+    :hook
+    (web-mode . web-mode-edit-element-minor-mode))
 
   ;; snippets for HTML
   ;; https://github.com/smihica/emmet-mode
   (use-package emmet-mode
     :init (setq emmet-move-cursor-between-quotes t) ;; default nil
+    (defun emmet-dwim (count)
+      (interactive "p")
+      (or
+       emmet-use-css-transform
+       (emmet-go-to-edit-point count)
+       (emmet-expand-line nil)
+       (evil-jump-forward count)))
+    :bind
+    ("TAB" . emmet-dwim)
     :diminish (emmet-mode . " e"))
-  (add-hook 'web-mode-hook 'emmet-mode)
 
   (defun my-web-mode-hook ()
     "Hook for `web-mode' config for company-backends."
@@ -65,7 +76,6 @@
 		  (string= web-mode-cur-language "jsx"))
 	      (unless tern-mode (tern-mode))
 	    (if tern-mode (tern-mode -1))))))
-  (add-hook 'web-mode-hook 'company-mode)
 
   ;; to get completion data for angularJS
   (use-package ac-html-angular :defer t)
@@ -74,12 +84,12 @@
 
   ;; to get completion for HTML stuff
   ;; https://github.com/osv/company-web
-  (use-package company-web)
-
-  (add-hook 'web-mode-hook 'company-mode))
+  (use-package company-web))
 
 ;; configure CSS mode company backends
 (use-package css-mode
+  :hook
+  (css-mode (my-css-mode-hook company-mode))
   :config
   (defun my-css-mode-hook ()
     (set (make-local-variable 'company-backends)
