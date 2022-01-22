@@ -95,12 +95,13 @@
   :bind
   ("C-x s" . swiper)
   ("C-x C-r" . ivy-resume)
+  (:map read-expression-map
+        ("C-r" . counsel-expression-history))
   :custom
   (ivy-use-selectable-prompt t)
   (ivy-use-virtual-buffers nil)
   :config
-  (ivy-mode 1)
-  (define-key read-expression-map (kbd "C-r") 'counsel-expression-history))
+  (ivy-mode 1))
 
 
 (use-package hlinum
