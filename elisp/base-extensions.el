@@ -95,9 +95,11 @@
   :bind
   ("C-x s" . swiper)
   ("C-x C-r" . ivy-resume)
+  :custom
+  (ivy-use-selectable-prompt t)
+  (ivy-use-virtual-buffers nil)
   :config
   (ivy-mode 1)
-  (setq ivy-use-virtual-buffers nil)
   (define-key read-expression-map (kbd "C-r") 'counsel-expression-history))
 
 
