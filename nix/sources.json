@@ -23,6 +23,18 @@
         "url": "https://github.com/emacs-tree-sitter/elisp-tree-sitter/archive/3cfab8a0e945db9b3df84437f27945746a43cc71.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
+    "emacs-application-framework": {
+        "branch": "master",
+        "description": "A free/libre and open-source extensible framework that revolutionizes the graphical capabilities of Emacs, the key to ultimately Live in Emacs",
+        "homepage": "",
+        "owner": "emacs-eaf",
+        "repo": "emacs-application-framework",
+        "rev": "44a207e07381feaab698a4a4dff2975617b44578",
+        "sha256": "0inp215npffwvl9fr6d3x56kqzmdf86kxjy8i0caw5p6gpsmwhms",
+        "type": "tarball",
+        "url": "https://github.com/emacs-eaf/emacs-application-framework/archive/44a207e07381feaab698a4a4dff2975617b44578.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
     "emacs-ng": {
         "branch": "master",
         "description": "A new approach to Emacs - Including TypeScript, Threading, Async I/O, and WebRender. ",
