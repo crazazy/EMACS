@@ -1,7 +1,7 @@
 { pkgs ? import ./.,  sources ? import ./sources.nix }:
 let
   emacsConfig = pkgs.runCommand "config.el" {} ''cat ${../elisp}/*.el > $out'';
-  emacs-ng = (import sources.emacs-ng).outputs.defaultPackage.${builtins.currentSystem};
+  emacs-ng = (import sources.emacs-ng).outputs.defaultApp.${builtins.currentSystem};
   emacsDist = pkgs.emacsWithPackagesFromUsePackage { # Why won't emacs-overlay grab my packages?
     package = emacs-ng;
     config = builtins.readFile emacsConfig.outPath;
